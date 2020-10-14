@@ -4,7 +4,7 @@ class CreatePreExistingConditions < ActiveRecord::Migration[6.0]
         t.integer :user_id
         t.string :name
         t.string :symptoms
-        t.string :reccomended_action
+        t.string :recommended_action
       end
     end
   end

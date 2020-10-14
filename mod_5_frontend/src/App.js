@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-
-import Header from './Components/Header'
-import BookContainer from './Components/BookContainer'
-import BookForm from './Components/BookForm'
-
 import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
+import Paperbase from './Components/Paperbase'
+import { connect } from 'react-redux';
 
 import {
   BrowserRouter,
@@ -15,73 +12,61 @@ import {
   Redirect
 } from 'react-router-dom';
 
-// import staticBooks from './books'
 
-class App extends Component {
+const App = (props) => {
 
-  state = {
-    isLoggedIn: false
-  }
+  return (
+    <div className="parent">
+      <BrowserRouter>
 
-  componentDidMount(){
-    if(localStorage.getItem('auth_key')){
-      this.setState({ isLoggedIn: true })
-    }
-  }
+        <Switch>
 
-  handleBookSubmit = (newBook) => {
-    this.setState({ books: [...this.state.books, newBook], addingBook: false })
-  }
-
-  handleLogin = () => {
-    if(localStorage.getItem('auth_key')){
-      this.setState({ isLoggedIn: true })
-    }
-  }
-
-  render(){
-    return (
-      <div className="parent">
-        <BrowserRouter>
-
-          <Header isLoggedIn={this.state.isLoggedIn} />
-
-          <Switch>
-
-            <Route exact path="/" component={() => {
-              if(localStorage.getItem('auth_key')){
-                return <BookContainer />
-              }else{
-                return <Redirect to="/login" />
-              }
-            }} />
-
-            <Route exact path="/newbook">
-              <BookForm handleBookSubmit={this.handleBookSubmit} />
-            </Route>
-
-            <Route path="/login" component={() => {
-              return <Login handleLogin={this.handleLogin} />
-            }} />
-
-            <Route path="/signup" component={SignUp} />
-
-            <Route path="/logout" component={() => {
-              localStorage.clear()
-              this.setState({ isLoggedIn: false })
+          <Route exact path="/" component={() => {
+            if(localStorage.getItem('auth_key')){
+              return <Redirect to="/home" />
+            }else{
               return <Redirect to="/login" />
-            }} />
+            }
+          }} />
 
-            <Route>
-              <Redirect to="/" />
-            </Route>
+          <Route path="/login" component={() => {
+            return <Login />
+          }} />
 
-          </Switch>
+          <Route path="/signup" component={SignUp} />
+          <Route path="/home" component={Paperbase} />
 
-        </BrowserRouter>
-      </div>
-    );
+          <Route path="/logout" component={() => {
+            localStorage.clear()
+            props.setClassList([])
+            props.set_isLoggedIn(false)
+            return <Redirect to="/login" />
+          }} />
+
+          <Route>
+            <Redirect to="/" />
+          </Route>
+
+        </Switch>
+
+      </BrowserRouter>
+    </div>
+  );
+}
+
+const mapStateToProps = state => {
+  return {
+    username: state.username,
+    password: state.password,
+    isLoggedIn: state.isLoggedIn
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    set_isLoggedIn: (value) => {dispatch({type: 'isLoggedIn', value: value})},
+    setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

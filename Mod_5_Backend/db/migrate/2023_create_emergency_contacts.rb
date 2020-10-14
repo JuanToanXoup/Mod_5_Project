@@ -4,7 +4,7 @@ class CreateEmergencyContacts < ActiveRecord::Migration[6.0]
         t.integer :user_id
         t.string :contact_name
         t.string :contact_relationship
-        t.integer :phone_number
+        t.string :phone_number
         end
     end
 end

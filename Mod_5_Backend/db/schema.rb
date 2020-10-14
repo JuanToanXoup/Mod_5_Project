@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2027) do
   end
 
   create_table "class_periods", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "time"
     t.integer "room_number"
     t.string "subject"
@@ -33,21 +32,21 @@ ActiveRecord::Schema.define(version: 2027) do
     t.integer "user_id"
     t.string "contact_name"
     t.string "contact_relationship"
-    t.integer "phone_number"
+    t.string "phone_number"
   end
 
   create_table "notes", force: :cascade do |t|
     t.integer "user_id"
     t.string "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pre_existing_conditions", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.string "symptoms"
-    t.string "reccomended_action"
+    t.string "recommended_action"
   end
 
   create_table "prescriptions", force: :cascade do |t|
@@ -60,16 +59,21 @@ ActiveRecord::Schema.define(version: 2027) do
   create_table "schedules", force: :cascade do |t|
     t.integer "user_id"
     t.integer "class_period_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "bio"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "age"
+    t.string "gender"
     t.string "avatar"
     t.integer "bus_number"
+    t.string "primary_language"
+    t.string "user_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
