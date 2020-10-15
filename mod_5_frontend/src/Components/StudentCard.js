@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux'
 
 const styles = (theme) => ({
     "card":{
@@ -26,11 +27,26 @@ const styles = (theme) => ({
     }
 });
 
+
 const StudentCard = (props)=>{
   const { classes } = props;
-  const {first_name,last_name,avatar} = props.props
+  const {first_name,last_name,avatar,id} = props.props
+
+  const getStudent = ()=> {
+    console.log('getting Student')
+    fetch(`http://localhost:3001/users/${id}`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Auth-Key': localStorage.getItem('auth_key')
+      }
+    })
+    .then(res => res.json())
+    .then(student => props.setCurrentStudent(student))
+    }
+
   return (
-        <div className ={classes.card}>
+        <div onClick={getStudent} className ={classes.card}>
         <img src={avatar} alt="Avatar" className={classes.image}/>
             <div className={classes.container}>
                 <h2 className={classes.name}><b>{first_name+" "+last_name}</b></h2>
@@ -41,4 +57,14 @@ const StudentCard = (props)=>{
 
 
 
-export default withStyles(styles)(StudentCard);
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentStudent: (student)=> {dispatch({type: 'SET_STUDENT', student: student})}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)( withStyles(styles)(StudentCard));

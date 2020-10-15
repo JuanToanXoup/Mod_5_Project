@@ -1,5 +1,6 @@
 const initialState = {
     currentUser: [],
+    selectedStudent: [],
     isLoggedIn: false,
     classList: [],
     navigator: 'Class Periods',
@@ -18,6 +19,12 @@ const Reducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.user
+            }
+        case'SET_STUDENT':
+            return {
+                ...state,
+                selectedStudent: action.student,
+                navigator: 'Student Page'
             }
         case 'GET_CLASS':
             console.log(action.classList)

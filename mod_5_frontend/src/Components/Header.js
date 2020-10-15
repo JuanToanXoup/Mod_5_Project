@@ -70,6 +70,17 @@ const Header = (props)=>{
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label="Usage" />
           </Tabs>
         )
+      case 'Student Page':
+        return (
+          <Tabs value={props.tab.value} textColor="inherit">
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label="Profile Page" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label="Schedule" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label="Allergies" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label="Prescriptions" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 4})} textColor="inherit" label="Pre-Existing Conditions" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 5})} textColor="inherit" label="Notes" />
+          </Tabs>
+        )
       default:
         break;
     }

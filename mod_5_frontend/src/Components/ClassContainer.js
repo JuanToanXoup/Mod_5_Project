@@ -38,7 +38,7 @@ const ClassContainer = (props) => {
       <Grid container spacing={3}>
         {props.classList.map(student => 
         <Grid key={student.id} item xs={6} sm={3}>
-          <StudentCard  className={classes.paper} props={student}/>
+          <StudentCard className={classes.paper} props={student}/>
         </Grid>
         )}
       </Grid>
