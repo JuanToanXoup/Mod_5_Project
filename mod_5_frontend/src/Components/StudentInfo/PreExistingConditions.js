@@ -13,6 +13,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableheader: {
+    fontSize: '30pt'
+  },
+  tablecell: {
+    fontSize: '20pt'
+  }
 });
 
 const PreExistingConditions = (props) => {
@@ -23,19 +29,19 @@ const PreExistingConditions = (props) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Pre-Existing Condition Name</TableCell>
-            <TableCell align="left">Symptoms</TableCell>
-            <TableCell align="left">Recommended Action</TableCell>
+            <TableCell className = {classes.tableheader}>Pre-Existing Condition Name</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Symptoms</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Recommended Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.selectedStudent.pre_existing_conditions.map((condition) => (
             <TableRow key={condition.id}>
-              <TableCell component="th" scope="row">
+              <TableCell className = {classes.tablecell} component="th" scope="row">
                 {condition.name}
               </TableCell>
-              <TableCell align="left">{condition.symptoms}</TableCell>
-              <TableCell align="left">{condition.recommended_action}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{condition.symptoms}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{condition.recommended_action}</TableCell>
             </TableRow>
           ))}
         </TableBody>

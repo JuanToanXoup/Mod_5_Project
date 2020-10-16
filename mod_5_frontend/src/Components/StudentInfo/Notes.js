@@ -13,6 +13,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableheader: {
+    fontSize: '30pt'
+  },
+  tablecell: {
+    fontSize: '20pt'
+  }
 });
 
 const Notes = (props) => {
@@ -23,17 +29,17 @@ const Notes = (props) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Created At</TableCell>
-            <TableCell align="left">Note</TableCell>
+            <TableCell className = {classes.tableheader} >Created At</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Note</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.selectedStudent.notes.map((note) => (
             <TableRow key={note.id}>
-              <TableCell component="th" scope="row">
+              <TableCell className = {classes.tablecell} component="th" scope="row">
                 {note.created_at}
               </TableCell>
-              <TableCell align="left">{note.text}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{note.text}</TableCell>
             </TableRow>
           ))}
         </TableBody>

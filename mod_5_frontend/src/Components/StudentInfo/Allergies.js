@@ -13,6 +13,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableheader: {
+    fontSize: '30pt'
+  },
+  tablecell: {
+    fontSize: '20pt'
+  }
 });
 
 const Allergies = (props) => {
@@ -23,19 +29,19 @@ const Allergies = (props) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Allergy Name</TableCell>
-            <TableCell align="left">Treatment</TableCell>
-            <TableCell align="left">Symptoms</TableCell>
+            <TableCell className = {classes.tableheader}>Allergy Name</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Treatment</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Symptoms</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.selectedStudent.allergies.map((allergy) => (
             <TableRow key={allergy.id}>
-              <TableCell component="th" scope="row">
+              <TableCell className = {classes.tablecell} component="th" scope="row">
                 {allergy.name}
               </TableCell>
-              <TableCell align="left">{allergy.treatment}</TableCell>
-              <TableCell align="left">{allergy.symptoms}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{allergy.treatment}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{allergy.symptoms}</TableCell>
             </TableRow>
           ))}
         </TableBody>

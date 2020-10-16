@@ -1,6 +1,5 @@
 
 # Create Class Periods
-
 set_subject = ["Math","Science","English","Social Studies","Physical Education","Art","Choir","Orchestra","Spanish","French"]
 set_time = 800
 4.times do |index|
@@ -35,7 +34,7 @@ room_assignment = 100
         age: rand(6..11),
         gender: Faker::Gender.binary_type,
         avatar: Faker::Avatar.image,
-        bus_number: room_assignment,
+        room_number: room_assignment,
         primary_language: language[rand(0..13)],
         user_type: 'teacher'
     })
@@ -149,14 +148,16 @@ end
     end
 end
 
-User.all.each do |student|
+student_array = User.all.select{|user| user.user_type == 'student'}
+
+student_array.each do |student|
     schedule_size = 0
     until schedule_size == 7
         new_period = ClassPeriod.find(rand(1..70))
         time_check = student.class_periods.map{|period| period.time}.include?(new_period.time)
-        # subject_check = student.class_periods.map{|period| period.subject}.include?(new_period.subject)
-        room_number_check = student.class_periods.map{|period| period.room_number}.include?(new_period.room_number)
-        if !room_number_check && !time_check
+        subject_check = student.class_periods.map{|period| period.subject}.include?(new_period.subject)
+
+        if !subject_check && !time_check
             Schedule.create({user_id: student.id,class_period_id: new_period.id})
             schedule_size += 1
         end

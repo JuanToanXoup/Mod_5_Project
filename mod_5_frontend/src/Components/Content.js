@@ -1,9 +1,10 @@
 // will render content based on selected tab/navigator
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux'
 
+import ScanOrSelectStudent from './ScanOrSelectStudent'
 import ClassContainer from './ClassContainer'
 import ClassPeriodContainer from './ClassPeriodContainer'
 import StudentSpecs from './StudentSpecs'
@@ -41,7 +42,8 @@ function Content(props) {
 
   const renderContent = () => {
     switch(props.navigator+props.tab.value){
-      case 'Class Period0': return <ClassPeriodContainer/>
+      case 'Search Student0': return <ScanOrSelectStudent/>
+      case 'Class Periods0': return <ClassPeriodContainer/>
       case 'Class Room0': return <ClassContainer/>
       case 'Student Page0': return <StudentSpecs/>
       case 'Student Page1': return <Schedule/>

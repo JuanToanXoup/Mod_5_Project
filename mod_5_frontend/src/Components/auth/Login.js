@@ -95,7 +95,7 @@ const Login = (props) => {
     .then(userHash => {
       if(userHash['auth_key']){
         localStorage.setItem('auth_key',userHash['auth_key'])
-        props.set_currentUser(userHash['user'])
+        props.set_userType(userHash['user'].user_type)
         props.set_isLoggedIn(true)
         props.history.push('/')
       }else{
@@ -172,6 +172,7 @@ const mapDispatchToProps = dispatch => {
     handleInputChange: (event) => {dispatch({type: 'handleInputChange', event: event})},
     set_isLoggedIn: (value) => {dispatch({type: 'isLoggedIn', value: value})},
     set_currentUser: (user) => {dispatch({type: 'SET_USER', user: user})},
+    set_userType: (userType) => {dispatch({type: 'SET_TYPE', userType: userType})}
   }
 }
 

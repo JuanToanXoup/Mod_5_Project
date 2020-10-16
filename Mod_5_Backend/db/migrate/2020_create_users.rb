@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :gender
       t.string :avatar
       t.integer :bus_number
+      t.integer :room_number
       t.string :primary_language
       t.string :user_type
 

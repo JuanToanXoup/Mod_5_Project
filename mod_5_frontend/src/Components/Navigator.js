@@ -8,7 +8,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
 import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
@@ -50,7 +50,7 @@ const styles = (theme) => ({
     color: '#4fc3f7',
   },
   itemPrimary: {
-    fontSize: 'inherit',
+    fontSize: '23px',
   },
   itemIcon: {
     minWidth: 'auto',
@@ -100,16 +100,19 @@ const Navigator = (props) => {
         <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
           Paperbase
         </ListItem>
-        <ListItem className={clsx(classes.item, classes.itemCategory)}>
+        <ListItem 
+          onClick={()=>{props.set_navigator("Search Student");props.set_tab({name: "",value: 0})}}
+          className={clsx(classes.item, classes.itemCategory)}
+        >
           <ListItemIcon className={classes.itemIcon}>
-            <HomeIcon />
+            <SearchIcon />
           </ListItemIcon>
           <ListItemText
             classes={{
               primary: classes.itemPrimary,
             }}
           >
-            Project Overview
+            Search Student
           </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (

@@ -34,7 +34,13 @@ const App = (props) => {
           }} />
 
           <Route path="/signup" component={SignUp} />
-          <Route path="/home" component={Paperbase} />
+          <Route path="/home" component={() => {
+            if(localStorage.getItem('auth_key')){
+              return <Paperbase/>
+            }else{
+              return <Redirect to="/login" />
+            }
+          }} />
 
           <Route path="/logout" component={() => {
             localStorage.clear()

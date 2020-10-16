@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2027) do
     t.string "gender"
     t.string "avatar"
     t.integer "bus_number"
+    t.integer "room_number"
     t.string "primary_language"
     t.string "user_type"
     t.datetime "created_at", precision: 6, null: false

@@ -1,19 +1,33 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux'
 import StudentCard from './StudentCard'
-import Grid from '@material-ui/core/Grid';
+import {Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import ClassSelectBox from './ClassSelectBox';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  selectBox: {
+    border: "2px solid black",
+    fontSize: '30px',
+    'text-align-last': 'center',
+    "width":"100%",
+    "boxShadow":"0 4px 8px 0 rgba(0,0,0,0.2)",
+    "transition":"0.3s",
+    "border-radius": "10px",
+    "background": 'white',
+    marginBottom: 20,
+    marginTop: -25,
+    "word-spacing": "60px"
+  }
 }));
 
 const ClassContainer = (props) => {
@@ -21,7 +35,8 @@ const ClassContainer = (props) => {
 
   const getClass = ()=> {
     console.log('getting Students')
-    fetch('http://localhost:3001/users',{
+    console.log(props.currentPeriod.id)
+    fetch(`http://localhost:3001/getclass/${props.currentPeriod}`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,10 +46,11 @@ const ClassContainer = (props) => {
     .then(res => res.json())
     .then(classList => props.setClassList(classList))
   }
-  useEffect(getClass,[props.isLoggedIn])
+  useEffect(getClass,[props.currentPeriod])
 
   return (
     <div className={classes.root}>
+      {<ClassSelectBox/>}
       <Grid container spacing={3}>
         {props.classList.map(student => 
         <Grid key={student.id} item xs={6} sm={3}>
@@ -48,13 +64,16 @@ const ClassContainer = (props) => {
 
 const mapStateToProps = state => {
   return {
-    classList: state.classList
+    classList: state.classList,
+    currentPeriod: state.currentPeriod,
+    periodList: state.periodList
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
-    setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})}
+    setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})},
+    setCurrentPeriod: (period) => {dispatch({type: 'SET_PERIOD', period: period})}
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ClassContainer);

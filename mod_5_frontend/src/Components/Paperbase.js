@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
+import {connect} from 'react-redux'
 
 function Copyright() {
   return (
@@ -161,13 +162,27 @@ const styles = {
   },
 };
 
-function Paperbase(props) {
+const Paperbase = (props) => {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const getUser = () => {
+    fetch(`http://localhost:3001/setuser`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Auth-Key': localStorage.getItem('auth_key')
+      }
+    })
+    .then(res => res.json())
+    .then(user => props.set_currentUser(user))
+  }
+
+  React.useEffect(getUser,[props.isLoggedIn])
 
   return (
     <ThemeProvider theme={theme}>
@@ -204,4 +219,14 @@ Paperbase.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Paperbase);
+const mapStateToProps = state => {
+  return {
+  }
+}
+ 
+const mapDispatchToProps = dispatch => {
+  return {
+    set_currentUser: (user) => {dispatch({type: 'SET_USER', user: user})}
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(Paperbase));

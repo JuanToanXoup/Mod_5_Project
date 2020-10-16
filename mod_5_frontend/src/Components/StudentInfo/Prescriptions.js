@@ -13,6 +13,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableheader: {
+    fontSize: '30pt'
+  },
+  tablecell: {
+    fontSize: '20pt'
+  }
 });
 
 const Prescriptions = (props) => {
@@ -23,19 +29,19 @@ const Prescriptions = (props) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Prescription Name</TableCell>
-            <TableCell align="left">Daily Dose</TableCell>
-            <TableCell align="left">Expiration (Year/Month/Day)</TableCell>
+            <TableCell className = {classes.tableheader}>Prescription Name</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Daily Dose</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Expiration (Year/Month/Day)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.selectedStudent.prescriptions.sort(function(a,b) {return a.expiration - b.expiration}).map((prescription) => (
             <TableRow key={prescription.id}>
-              <TableCell component="th" scope="row">
+              <TableCell className = {classes.tablecell} component="th" scope="row">
                 {prescription.name}
               </TableCell>
-              <TableCell align="left">{prescription.daily_dose}</TableCell>
-              <TableCell align="left">{prescription.expiration}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{prescription.daily_dose}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{prescription.expiration}</TableCell>
             </TableRow>
           ))}
         </TableBody>

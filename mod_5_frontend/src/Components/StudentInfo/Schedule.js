@@ -13,29 +13,45 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableheader: {
+    fontSize: '30pt'
+  },
+  tablecell: {
+    fontSize: '20pt'
+  }
 });
 
 const Schedule = (props) => {
   const classes = useStyles();
+
+  const west_time = (time)=>{
+    if(time/100 < 12){
+        return `${time/100}:00 AM`
+    }else if(time/100 === 12){
+        return `12:00 PM`
+    }else{
+        return `${time/100 - 12}:00 PM`
+    }
+  } 
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Time</TableCell>
-            <TableCell align="left">Room Number</TableCell>
-            <TableCell align="left">Subject</TableCell>
+            <TableCell className = {classes.tableheader}>Time</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Room Number</TableCell>
+            <TableCell className = {classes.tableheader} align="left">Subject</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.selectedStudent.class_periods.map((class_period) => (
+          {props.selectedStudent.class_periods.sort((a, b) => (a.time > b.time) ? 1 : -1).map((class_period) => (
             <TableRow key={class_period.id}>
-              <TableCell component="th" scope="row">
-                {class_period.time}
+              <TableCell className = {classes.tablecell} component="th" scope="row">
+                {west_time(class_period.time)}
               </TableCell>
-              <TableCell align="left">{class_period.room_number}</TableCell>
-              <TableCell align="left">{class_period.subject}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{class_period.room_number}</TableCell>
+              <TableCell className = {classes.tablecell} align="left">{class_period.subject}</TableCell>
             </TableRow>
           ))}
         </TableBody>

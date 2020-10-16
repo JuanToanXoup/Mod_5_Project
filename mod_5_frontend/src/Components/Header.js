@@ -21,7 +21,7 @@ const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 const styles = (theme) => ({
   mainAppBar: {
-    minHeight: 79
+    minHeight: 92
   },
   secondaryBar: {
     zIndex: 0,
@@ -30,7 +30,7 @@ const styles = (theme) => ({
     marginLeft: -theme.spacing(1),
   },
   iconButtonAvatar: {
-    padding: 4,
+    padding: 4
   },
   link: {
     textDecoration: 'none',
@@ -44,7 +44,14 @@ const styles = (theme) => ({
   },
   title: {
     fontSize: 80
-  }
+  },
+  tabLabel:{
+    fontSize: 23
+  },
+  largeIcon: {
+    width: 60,
+    height: 60
+  },
 });
 
 const Header = (props)=>{
@@ -52,33 +59,38 @@ const Header = (props)=>{
 
   const renderTabs = ()=> {
     switch(props.navigator){
+      case 'Search Student':
+        return (
+          <Tabs value={props.tab.value} textColor="inherit">
+          </Tabs>
+        )
       case 'Class Periods':
         return (
           <Tabs value={props.tab.value} textColor="inherit">
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label="Your Class Periods" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label="Sign-in method" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label="Templates" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label="Usage" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label={<span className={classes.tabLabel}>Your Class Periods</span>} />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Sign-in method</span>} />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>Templates</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Usage</span>}/>
          </Tabs>
         )     
       case 'Class Room':
         return (
           <Tabs value={props.tab.value} textColor="inherit">
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label="Your Students" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label="Sign-in method" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label="Templates" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label="Usage" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label={<span className={classes.tabLabel}>Your Students</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Sign-in method</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>Templates</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Usage</span>}/>
           </Tabs>
         )
       case 'Student Page':
         return (
           <Tabs value={props.tab.value} textColor="inherit">
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label="Profile Page" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label="Schedule" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label="Allergies" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label="Prescriptions" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 4})} textColor="inherit" label="Pre-Existing Conditions" />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 5})} textColor="inherit" label="Notes" />
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label={<span className={classes.tabLabel}>Profile Page</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Schedule</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>Allergies</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Prescriptions</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 4})} textColor="inherit" label={<span className={classes.tabLabel}>Pre-Existing Conditions</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 5})} textColor="inherit" label={<span className={classes.tabLabel}>Notes</span>}/>
           </Tabs>
         )
       default:
@@ -122,7 +134,7 @@ const Header = (props)=>{
               </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" className={classes.iconButtonAvatar}>
+              <IconButton color="inherit" iconStyle={styles.largeIcon}>
                 <Avatar src={props.currentUser.avatar} alt="My Avatar" />
               </IconButton>
             </Grid>
