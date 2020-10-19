@@ -8,7 +8,8 @@ import Link from '@material-ui/core/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import hex_back from '../Assets/Images/hex_background.png';
 
 function Copyright() {
   return (
@@ -154,7 +155,10 @@ const styles = {
   main: {
     flex: 1,
     padding: theme.spacing(6, 4),
-    background: '#eaeff1',
+    'background-image': `url(${hex_back})`,
+    'background-position': 'center',/* Center the image */
+    'background-repeat': 'no-repeat', /* Do not repeat the image */
+    'background-size': 'cover' /* Resize the background image to cover the entire container */
   },
   footer: {
     padding: theme.spacing(2),

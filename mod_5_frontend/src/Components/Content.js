@@ -13,6 +13,10 @@ import Prescriptions from './StudentInfo/Prescriptions'
 import PreExistingConditions from './StudentInfo/PreExistingConditions'
 import Schedule from './StudentInfo/Schedule'
 import Notes from './StudentInfo/Notes'
+import QrContainer from './QrContainer'
+import ClassAllergies from './ClassInfo/ClassAllergies'
+import ClassESL from './ClassInfo/ClassESL'
+import ClassGender from './ClassInfo/ClassGender'
 
 
 const styles = (theme) => ({
@@ -43,8 +47,12 @@ function Content(props) {
   const renderContent = () => {
     switch(props.navigator+props.tab.value){
       case 'Search Student0': return <ScanOrSelectStudent/>
+      case 'Search Student1': return <QrContainer/>
       case 'Class Periods0': return <ClassPeriodContainer/>
       case 'Class Room0': return <ClassContainer/>
+      case 'Class Room1': return <ClassAllergies/>
+      case 'Class Room2': return <ClassESL/>
+      case 'Class Room3': return <ClassGender/>
       case 'Student Page0': return <StudentSpecs/>
       case 'Student Page1': return <Schedule/>
       case 'Student Page2': return <Allergies/>

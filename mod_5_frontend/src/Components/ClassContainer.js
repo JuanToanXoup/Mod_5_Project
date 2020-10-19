@@ -48,6 +48,37 @@ const ClassContainer = (props) => {
   }
   useEffect(getClass,[props.currentPeriod])
 
+  const getClassESL = ()=> {
+    console.log('getting ESL')
+    fetch(`http://localhost:3001/class_esl/${props.currentPeriod}`,{
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Auth-Key': localStorage.getItem('auth_key')
+    }
+    })
+    .then(res => res.json())
+    .then(eslObject => {
+      props.setClassESL(eslObject)
+    })
+  }
+  useEffect(getClassESL,[props.currentPeriod])
+  const getClassGender = ()=> {
+    console.log('getting Gender')
+    fetch(`http://localhost:3001/class_gender/${props.currentPeriod}`,{
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Auth-Key': localStorage.getItem('auth_key')
+    }
+    })
+    .then(res => res.json())
+    .then(genderObject => {
+      props.setClassGender(genderObject)
+    })
+  }
+  useEffect(getClassGender,[props.currentPeriod])
+
   return (
     <div className={classes.root}>
       {<ClassSelectBox/>}
@@ -73,7 +104,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})},
-    setCurrentPeriod: (period) => {dispatch({type: 'SET_PERIOD', period: period})}
+    setCurrentPeriod: (period) => {dispatch({type: 'SET_PERIOD', period: period})},
+    setClassESL: (data) => {dispatch({type: 'SET_CLASS_ESL', esl: data})},
+    setClassGender: (data) => {dispatch({type: 'SET_CLASS_GENDER', gender: data})},
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ClassContainer);

@@ -3,10 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Nunito from '../Assets/Fonts/Nunito/Nunito-Bold.ttf';
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    "font-family": Nunito,
     "boxShadow":"0 4px 8px 0 rgba(0,0,0,0.2)",
     "&:hover": {
         "boxShadow":"0 8px 16px 0 rgba(0,0,0,0.2)"
@@ -23,6 +25,9 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  subject: {
+    
+  }
 });
 
 const ClassPeriodCard = (props)=>{
@@ -42,7 +47,7 @@ const ClassPeriodCard = (props)=>{
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h3" component="h2">
+        <Typography className={classes.subject} variant="h3" component="h2">
           {subject}
         </Typography>
         <Typography variant="h5" component="p">

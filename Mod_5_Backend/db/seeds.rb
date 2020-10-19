@@ -78,15 +78,11 @@ room_assignment = 100
                 treatment: ""
             })
         end
-        Note.create({
-            user_id: student.id,
-            text: "notes about student"
-        })
     end
 end
 
 # Create Students
-50.times do |index|
+10.times do |index|
     first = Faker::Name.first_name
     last = Faker::Name.last_name
     language = ["English","English","English","English","English","English","English","English","Spanish","Spanish","Spanish","Vietnamese","Chinese","Hindi"]
@@ -141,9 +137,11 @@ end
                 treatment: ""
             })
         end
+        random_teacher = User.all[rand(0..9)]
         Note.create({
             user_id: student.id,
-            text: "notes about student"
+            text: "notes about student",
+            teacher: random_teacher.first_name + " " +  random_teacher.last_name
         })
     end
 end

@@ -15,6 +15,18 @@ class ClassPeriodsController < ApplicationController
     render json: @students
   end
 
+  def class_allergies
+    render json: ClassPeriod.getAllergies(find_class_period)
+  end
+
+  def class_esl
+    render json: ClassPeriod.getESL(find_class_period)
+  end
+
+  def class_gender
+    render json: ClassPeriod.getGender(find_class_period)
+  end
+  
   def create
   end
 

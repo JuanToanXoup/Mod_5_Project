@@ -68,18 +68,15 @@ const Header = (props)=>{
         return (
           <Tabs value={props.tab.value} textColor="inherit">
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label={<span className={classes.tabLabel}>Your Class Periods</span>} />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Sign-in method</span>} />
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>Templates</span>}/>
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Usage</span>}/>
          </Tabs>
         )     
       case 'Class Room':
         return (
           <Tabs value={props.tab.value} textColor="inherit">
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 0})} textColor="inherit" label={<span className={classes.tabLabel}>Your Students</span>}/>
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Sign-in method</span>}/>
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>Templates</span>}/>
-            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Usage</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 1})} textColor="inherit" label={<span className={classes.tabLabel}>Allergies</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 2})} textColor="inherit" label={<span className={classes.tabLabel}>First Language</span>}/>
+            <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Gender</span>}/>
           </Tabs>
         )
       case 'Student Page':
