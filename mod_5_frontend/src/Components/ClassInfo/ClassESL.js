@@ -4,13 +4,14 @@ import {connect} from 'react-redux'
 import 'tui-chart/dist/tui-chart.css'
 import {PieChart} from '@toast-ui/react-chart'
 
+
+
+
 const styles = (theme) => ({
     graph:{
-        display: 'flex',
-        justifyContent: "center",
+        'margin-left': "10%"
     }
 });
-  
 
   
 const ClassESL = (props) => {
@@ -22,32 +23,34 @@ const ClassESL = (props) => {
     };
     
     const options = {
-    chart: {
-        width: 1160,
-        height: 650,
-        title: `Student's First Langurage`,
-        format: '1,000'
-    },
-    yAxis: {
-        title: 'Names'
-    },
-    xAxis: {
-        title: 'Amount',
-        min: 0,
-        max: 100,
-        suffix: ''
-    },
-    series: {
-        showLabel: true
-    }
-};
-
+        chart: {
+            width: 1160,
+            height: 650,
+            title: `Student's First Langurage`,
+            format: '1,000',
+        },
+        yAxis: {
+            title: 'Names',
+        },
+        xAxis: {
+            title: 'Amount',
+            min: 0,
+            max: 100,
+            suffix: ''
+        },
+        series: {
+            showLabel: true
+        }
+    };
+    
   return (
+    <div className={classes.graph}>
     <PieChart
         className={classes.graph}
         data={data} 
         options={options} 
     />
+    </div>
   );
 }
 

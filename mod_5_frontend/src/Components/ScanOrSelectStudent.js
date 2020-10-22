@@ -50,7 +50,7 @@ const ScanOrSelectStudent = (props)=>{
                 </div>
             </div>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid onClick={()=>{props.set_navigator("Search Student");props.set_tab({name: "",value: 2})}} item xs={6} sm={2}>
         <div className ={classes.card}>
         <img src={MagGlass} alt="Avatar" className={classes.image}/>
             <div className={classes.container}>

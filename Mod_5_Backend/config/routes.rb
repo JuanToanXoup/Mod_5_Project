@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get '/setuser', to: 'users#setuser'
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
+  post '/search', to: 'users#search'
 
 end

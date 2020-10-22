@@ -43,7 +43,6 @@ const Notes = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     const newNote = {
       user_id: props.selectedStudent.id,
       teacher: `${props.currentUser.first_name} ${props.currentUser.last_name}`,
@@ -72,19 +71,23 @@ const Notes = (props) => {
     }
   }
 
-  const deleteNote = (id)=>{
-    fetch(`http://localhost:3001/notes/${id}`,{
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }).then(res => res.json())
-    .then(deleted_note => {
-      let new_student = {...props.selectedStudent}
-      new_student.notes = [...props.selectedStudent.notes].filter(note => note.id !== deleted_note.id)
-      props.setNewNote(new_student);
-    })
+  const deleteNote = (note)=>{
+    if(`${props.currentUser.first_name} ${props.currentUser.last_name}` === note.teacher){
+      fetch(`http://localhost:3001/notes/${note.id}`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(deleted_note => {
+        let new_student = {...props.selectedStudent}
+        new_student.notes = [...props.selectedStudent.notes].filter(note => note.id !== deleted_note.id)
+        props.setNewNote(new_student);
+      })
+    } else {
+      alert("Must be creator to delete");   
+    }   
   }
 
   return (
@@ -102,7 +105,7 @@ const Notes = (props) => {
         <TableBody>
           {props.selectedStudent.notes.map((note) => (
             <TableRow className = {classes.tablerow} key={note.id}>
-              <TableCell className = {classes.tablecell} onClick={()=>deleteNote(note.id)} component="th" scope="row">X</TableCell>
+              <TableCell className = {classes.tablecell} onClick={()=>deleteNote(note)} component="th" scope="row">X</TableCell>
               <TableCell className = {classes.tablecell} align="left">{note.teacher}</TableCell>
               <TableCell className = {classes.tablecell} align="left">{note.created_at}</TableCell>
               <TableCell className = {classes.tablecell} align="left">{note.text}</TableCell>
@@ -112,29 +115,28 @@ const Notes = (props) => {
       </Table>
     </TableContainer>
     <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Create Student Note"
-              name="create student note"
-              autoComplete="Student Note"
-              autoFocus
-              onChange = {(e)=>handleInputChange(e)}
-              className = {classes.form}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick = {handleSubmit}
-            >
-              Post
-            </Button>
-    
+      variant="outlined"
+      margin="normal"
+      required
+      fullWidth
+      id="email"
+      label="Create Student Note"
+      name="create student note"
+      autoComplete="Student Note"
+      autoFocus
+      onChange = {(e)=>handleInputChange(e)}
+      className = {classes.form}
+    />
+    <Button
+      type="submit"
+      fullWidth
+      variant="contained"
+      color="primary"
+      className={classes.submit}
+      onClick = {handleSubmit}
+    >
+      Post
+    </Button>
   </React.Fragment>
 
   );

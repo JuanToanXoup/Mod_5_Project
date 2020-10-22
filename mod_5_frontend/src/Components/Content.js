@@ -17,6 +17,7 @@ import QrContainer from './QrContainer'
 import ClassAllergies from './ClassInfo/ClassAllergies'
 import ClassESL from './ClassInfo/ClassESL'
 import ClassGender from './ClassInfo/ClassGender'
+import SearchStudent from './SearchStudent'
 
 
 const styles = (theme) => ({
@@ -48,6 +49,7 @@ function Content(props) {
     switch(props.navigator+props.tab.value){
       case 'Search Student0': return <ScanOrSelectStudent/>
       case 'Search Student1': return <QrContainer/>
+      case 'Search Student2': return <SearchStudent/>
       case 'Class Periods0': return <ClassPeriodContainer/>
       case 'Class Room0': return <ClassContainer/>
       case 'Class Room1': return <ClassAllergies/>
@@ -59,6 +61,10 @@ function Content(props) {
       case 'Student Page3': return <Prescriptions/>
       case 'Student Page4': return <PreExistingConditions/>
       case 'Student Page5': return <Notes/>
+      case 'Profile Page0': {
+        props.setCurrentStudent(props.currentUser)
+        return <StudentSpecs/>
+      }
       
 
       default:
@@ -80,14 +86,16 @@ Content.propTypes = {
 const mapStateToProps = state => {
   return {
     navigator: state.navigator,
-    tab: state.tab
+    tab: state.tab,
+    currentUser: state.currentUser
 
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
-    setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})}
+    setClassList: (list) => {dispatch({type: 'GET_CLASS', classList: list})},
+    setCurrentStudent: (student)=> {dispatch({type: 'SET_STUDENT', student: student})}
   }
 }
 

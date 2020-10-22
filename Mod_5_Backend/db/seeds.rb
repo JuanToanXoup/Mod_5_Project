@@ -82,7 +82,7 @@ room_assignment = 100
 end
 
 # Create Students
-10.times do |index|
+100.times do |index|
     first = Faker::Name.first_name
     last = Faker::Name.last_name
     language = ["English","English","English","English","English","English","English","English","Spanish","Spanish","Spanish","Vietnamese","Chinese","Hindi"]

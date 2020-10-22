@@ -12,6 +12,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
 import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
+import TimerIcon from '@material-ui/icons/Timer';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { connect } from 'react-redux';
 
 const styles = (theme) => ({
@@ -72,16 +75,24 @@ const Navigator = (props) => {
       children: [
         { id: 'Class Periods', icon: <DnsRoundedIcon />, active: active('Class Periods'), first_tab: "Your Class Periods" },
         { id: 'Class Room', icon: <PeopleIcon />, active: active('Class Room'), first_tab: "Your Students"},
-        { id: 'Student Page', icon: <PermMediaOutlinedIcon />, active: active('Student Page') }
+        { id: 'Student Page', icon: <PermMediaOutlinedIcon />, active: active('Student Page') },
       ],
-    }
+    },
+    {
+      id: 'Settings',
+      children: [
+        { id: 'Profile Page', icon: <SettingsIcon /> },
+        { id: 'Performance', icon: <TimerIcon /> },
+        { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+      ],
+    },
   ];
 
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
-          Paperbase
+          Roll Call
         </ListItem>
         <ListItem 
           onClick={()=>{props.set_navigator("Search Student");props.set_tab({name: "",value: 0})}}

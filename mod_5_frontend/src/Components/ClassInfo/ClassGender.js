@@ -6,8 +6,8 @@ import {PieChart} from '@toast-ui/react-chart'
 
 const styles = (theme) => ({
     graph:{
-        display: 'flex',
-        justifyContent: "center",
+        'margin-left': "10%",
+        'font-size': '30px'
     }
 });
   
@@ -43,11 +43,12 @@ const ClassGender = (props) => {
 };
 
   return (
+    <div className={classes.graph}>
     <PieChart
-        className={classes.graph}
         data={data} 
         options={options} 
     />
+    </div>
   );
 }
 

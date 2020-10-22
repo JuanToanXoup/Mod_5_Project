@@ -6,8 +6,7 @@ import {BarChart} from '@toast-ui/react-chart'
 
 const styles = (theme) => ({
     graph:{
-        display: 'flex',
-        justifyContent: "center",
+        'margin-left': "10%"
     }
 });
   
@@ -80,11 +79,12 @@ const ClassAllergies = (props) => {
   
   React.useEffect(getClassAllergies,[props.currentPeriod])
   return (
-    <BarChart
-        className={classes.graph}
-        data={data} 
-        options={options} 
-    />
+    <div className={classes.graph}>
+        <BarChart
+            data={data} 
+            options={options} 
+        />
+    </div>
   );
 }
 

@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     render json: current_user, include: [:allergies,:emergency_contacts,:notes,:pre_existing_conditions,:prescriptions,:class_periods]
   end
 
+  def search
+    render json: User.search(users_params)
+  end
+
   def create
     @user = User.create(users_params)
     payload = { user_id: @user.id }
@@ -23,7 +27,7 @@ class UsersController < ApplicationController
 
   private
     def users_params
-      params.require(:user).permit(:username,:password)
+      params.require(:user).permit(:username,:password,:first_name,:last_name,:id,:bus_number)
     end
 
     def find_user

@@ -68,8 +68,8 @@ const ClassContainer = (props) => {
     fetch(`http://localhost:3001/class_gender/${props.currentPeriod}`,{
     method: 'GET',
     headers: {
-        'Content-Type': 'application/json',
-        'Auth-Key': localStorage.getItem('auth_key')
+      'Content-Type': 'application/json',
+      'Auth-Key': localStorage.getItem('auth_key')
     }
     })
     .then(res => res.json())
