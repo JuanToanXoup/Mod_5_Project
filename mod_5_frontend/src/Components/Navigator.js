@@ -16,6 +16,9 @@ import TimerIcon from '@material-ui/icons/Timer';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { connect } from 'react-redux';
+import RollCall from '../Assets/Images/Roll_Call.png';
+import { TextareaAutosize } from '@material-ui/core';
+
 
 const styles = (theme) => ({
   categoryHeader: {
@@ -56,6 +59,10 @@ const styles = (theme) => ({
   divider: {
     marginTop: theme.spacing(2),
   },
+  logo: {
+    'height': "100%",
+    'width': "100%"
+  }
 });
 
 const Navigator = (props) => {
@@ -81,9 +88,7 @@ const Navigator = (props) => {
     {
       id: 'Settings',
       children: [
-        { id: 'Profile Page', icon: <SettingsIcon /> },
-        { id: 'Performance', icon: <TimerIcon /> },
-        { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+        { id: 'Your Profile Page', icon: <SettingsIcon />, active: active('Your Profile Page') },
       ],
     },
   ];
@@ -92,7 +97,7 @@ const Navigator = (props) => {
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
-          Roll Call
+          <img className={classes.logo} src={RollCall} alt="Roll Call Logo"/>
         </ListItem>
         <ListItem 
           onClick={()=>{props.set_navigator("Search Student");props.set_tab({name: "",value: 0})}}

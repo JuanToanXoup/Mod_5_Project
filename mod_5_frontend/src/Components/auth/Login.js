@@ -14,6 +14,10 @@ import { connect } from 'react-redux';
 import {
   withRouter
 } from 'react-router';
+import first_back from '../../Assets/Images/LoginPhotos/1.jpg';
+import second_back from '../../Assets/Images/LoginPhotos/2.jpg';
+import third_back from '../../Assets/Images/LoginPhotos/3.jpg';
+import RollCall from '../../Assets/Images/Roll_Call.png';
 
 function Copyright() {
   return (
@@ -29,7 +33,11 @@ function Copyright() {
 }
 
 const imgRender = ()=>{
-  
+  switch(Math.floor(Math.random() * 3) + 1  ){
+    case 1: return first_back
+    case 2: return second_back
+    case 3: return third_back
+  }
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: `url(${imgRender()})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -114,6 +122,7 @@ const Login = (props) => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          <img src={RollCall} alt="Roll Call Logo"/>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

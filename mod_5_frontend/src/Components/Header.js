@@ -21,7 +21,7 @@ const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 const styles = (theme) => ({
   mainAppBar: {
-    minHeight: 92
+    minHeight: 89
   },
   secondaryBar: {
     zIndex: 0,
@@ -88,6 +88,11 @@ const Header = (props)=>{
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 3})} textColor="inherit" label={<span className={classes.tabLabel}>Prescriptions</span>}/>
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 4})} textColor="inherit" label={<span className={classes.tabLabel}>Pre-Existing Conditions</span>}/>
             <Tab onClick={(e)=>props.set_tab({name: e.currentTarget.innerText,value: 5})} textColor="inherit" label={<span className={classes.tabLabel}>Notes</span>}/>
+          </Tabs>
+        )
+      case 'Your Profile Page':
+        return (
+          <Tabs value={props.tab.value} textColor="inherit">
           </Tabs>
         )
       default:

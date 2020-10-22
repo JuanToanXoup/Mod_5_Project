@@ -18,6 +18,7 @@ import ClassAllergies from './ClassInfo/ClassAllergies'
 import ClassESL from './ClassInfo/ClassESL'
 import ClassGender from './ClassInfo/ClassGender'
 import SearchStudent from './SearchStudent'
+import TeacherSpecs from './TeacherSpecs'
 
 
 const styles = (theme) => ({
@@ -61,12 +62,7 @@ function Content(props) {
       case 'Student Page3': return <Prescriptions/>
       case 'Student Page4': return <PreExistingConditions/>
       case 'Student Page5': return <Notes/>
-      case 'Profile Page0': {
-        props.setCurrentStudent(props.currentUser)
-        return <StudentSpecs/>
-      }
-      
-
+      case 'Your Profile Page0': return <TeacherSpecs/>
       default:
       break;
     }

@@ -64,14 +64,14 @@ const StudentSpecs = props => {
   const classes = useStyles();
 
   const renderBusOrRoom = ()=>{
-    switch(props.selectedStudent.user_type){
-      case 'teacher': return <Paper className={classes.paper}>Room Number: {props.selectedStudent.room_number}</Paper>
-      case 'student': return <Paper className={classes.paper}>Bus Number: {props.selectedStudent.bus_number}</Paper>
+    switch(props.currentUser.user_type){
+      case 'teacher': return <Paper className={classes.paper}>Room Number: {props.currentUser.room_number}</Paper>
+      case 'student': return <Paper className={classes.paper}>Bus Number: {props.currentUser.bus_number}</Paper>
     }
   }
 
   const renderSpecs = () => {
-    if(props.selectedStudent.length === 0){
+    if(props.currentUser.length === 0){
       return (
         props.set_navigator("Search Student"),
         props.set_tab({name: "",value: 0})
@@ -80,7 +80,7 @@ const StudentSpecs = props => {
       return (
         <React.Fragment>
       <div className = {classes.left}>
-        <StudentCard props={props.selectedStudent}/>
+        <StudentCard props={props.currentUser}/>
       </div>
       <div className = {classes.right}>
       <Card className = {classes.tabletitle}>Emergeny Contacts</Card>
@@ -94,7 +94,7 @@ const StudentSpecs = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.selectedStudent.emergency_contacts.map((contact) => (
+            {props.currentUser.emergency_contacts.map((contact) => (
               <TableRow className = {classes.tablerow} key={contact.id}>
                 <TableCell className = {classes.tablecell} align="left">{contact.contact_name}</TableCell>
                 <TableCell className = {classes.tablecell} align="left">{contact.contact_relationship}</TableCell>
@@ -108,10 +108,10 @@ const StudentSpecs = props => {
       <div>
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>Age: {props.selectedStudent.age}</Paper>
+            <Paper className={classes.paper}>Age: {props.currentUser.age}</Paper>
           </Grid>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>Gender: {props.selectedStudent.gender}</Paper>
+            <Paper className={classes.paper}>Gender: {props.currentUser.gender}</Paper>
           </Grid>
           <Grid item xs={4}>
             {renderBusOrRoom()}
@@ -132,7 +132,7 @@ const StudentSpecs = props => {
 
 const mapStateToProps = state => {
     return {
-      selectedStudent: state.selectedStudent
+      currentUser: state.currentUser
     }
   }
    
